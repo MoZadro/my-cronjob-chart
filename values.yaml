@@ -5,6 +5,8 @@ image:
 label:
   io.cilium/egress-gateway: enabled
   test: enabled
+  prod: enabled
+
 namespace: god-zadro
 schedule: '*/15 * * * *'
 teamName: god
