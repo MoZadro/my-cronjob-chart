@@ -6,7 +6,7 @@ label:
   io.cilium/egress-gateway: enabled
   test: enabled
   prod: enabled
-  novitest: enables
+  novitest: enableswqeq
 
 namespace: god-zadro
 schedule: '*/15 * * * *'
