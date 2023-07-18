@@ -21,6 +21,6 @@ spec:
             - name: {{ .Release.Name }}
               image: busybox:latest
               imagePullPolicy: {{ .Values.image.pullPolicy }}
-              command: ["/bin/sh", "-c", "echo 'Job complete'"]
+              command: ["/bin/sh", "-c", "echo 'Job completeeeeees'"]
               securityContext:
                 {{- toYaml .Values.securityContext | nindent 16 }}
