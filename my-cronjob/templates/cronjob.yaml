@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  schedule: '{{ .Values.schedule }}'
+  jobTemplate:
+    spec:
+      backoffLimit: 5
+      activeDeadlineSeconds: 120
+      ttlSecondsAfterFinished: 60
+      template:
+        metadata:
+          labels:
+            {{- toYaml .Values.label | nindent 12 }}
+        spec:
+          imagePullSecrets:
+          - name: {{ .Release.Name }}-{{ template "dockerSecretName" . }}
+          restartPolicy: OnFailure
+          containers:
+            - name: {{ .Release.Name }}
+              image: busybox:latest
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["/bin/sh", "-c", "echo 'Job complete'"]
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}

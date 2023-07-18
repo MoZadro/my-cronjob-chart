@@ -1,0 +1,37 @@
+image:
+  pullPolicy: Always
+
+
+label:
+  io.cilium/egress-gateway: enabled
+namespace: god-zadro
+schedule: '*/15 * * * *'
+teamName: god
+securityContext:
+  privileged: false
+  readOnlyRootFilesystem: true
+  runAsUser: 20000
+  runAsGroup: 20000
+  allowPrivilegeEscalation: false
+  capabilities: {}
+imageCredentials:
+  password: JrM3mTLq4YGD
+  registry: docker-app.nsoft.com:10884
+  username: jenkins.bot.god
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 9376
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 9377
+
+ingress:
+  enabled: false
+
+resources: {}
